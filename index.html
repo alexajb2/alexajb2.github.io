@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexander Jiro Brown - Portfolio</title>
     <style>
-        /* Base styles with modern color scheme */
+        /* Base styles with night theme inspired by background */
         :root {
-            --primary-color: #6c5ce7;
-            --secondary-color: #00cec9;
-            --accent-color: #fd79a8;
-            --dark-color: #2d3436;
-            --light-color: #f9f9f9;
-            --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --primary-color: #a78bfa;
+            --secondary-color: #8b5cf6;
+            --accent-color: #f472b6;
+            --dark-color: #10101e;
+            --light-color: #f9fafb;
+            --text-color: #e2e8f0;
+            --card-bg: rgba(30, 30, 46, 0.8);
+            --card-hover: rgba(42, 42, 65, 0.9);
+            --gradient-overlay: linear-gradient(135deg, rgba(16, 16, 30, 0.8), rgba(76, 29, 149, 0.6));
         }
         
         * {
@@ -24,121 +27,174 @@
         
         body {
             line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            color: var(--text-color);
+            background-color: var(--dark-color);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/background-QKvx3fApMLcMRZX2iUzJwfc4MIQQOJ.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-overlay);
+            z-index: -1;
+        }
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            overflow-x: hidden;
-        }
-        
-        header {
-            background: var(--gradient-bg);
-            color: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
-            overflow: hidden;
         }
         
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
+        /* Hero section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
         }
         
-        h1, h2, h3 {
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(138, 75, 255, 0.3);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(138, 75, 255, 0.3));
             font-weight: 700;
         }
         
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
         }
         
-        h1::after {
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .hero-btn {
+            padding: 12px 24px;
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--light-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .hero-btn:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 75, 255, 0.2);
+        }
+        
+        .hero-btn i {
+            font-size: 1.2rem;
+        }
+        
+        /* Section styling */
+        .section {
+            margin: 100px 0;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-size: 2.2rem;
+        }
+        
+        .section-title::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
+            display: block;
+            width: 100px;
             height: 4px;
-            background-color: var(--accent-color);
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            margin: 15px auto 0;
             border-radius: 2px;
         }
         
-        /* Collapsible sections */
-        .collapsible {
-            background: var(--gradient-bg);
-            color: white;
-            cursor: pointer;
-            padding: 20px 30px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 18px;
-            border-radius: 15px;
-            margin-top: 25px;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            font-weight: 600;
-        }
-        
-        .active, .collapsible:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .content {
-            padding: 0;
-            max-height: 0;
+        /* Resume section */
+        .resume-container {
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease;
-            background-color: white;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            height: 600px;
         }
         
-        .content-inner {
-            padding: 30px;
-        }
-        
-        /* Project cards */
+        /* Projects section */
         .project-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 30px;
         }
         
         .project-card {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(10px);
+            height: 320px;
             display: flex;
             flex-direction: column;
-            height: 300px;
+            position: relative;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: var(--card-hover);
         }
         
         .project-card a {
@@ -150,10 +206,19 @@
         }
         
         .project-card-header {
-            background: var(--gradient-bg);
-            color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-card-header h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
         
         .project-card-body {
@@ -171,7 +236,7 @@
             position: relative;
         }
         
-        /* Older projects section */
+        /* Older Projects */
         .older-projects-btn {
             background: transparent;
             color: var(--primary-color);
@@ -189,10 +254,9 @@
         }
         
         .older-projects-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: rgba(139, 92, 246, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         
         .older-projects-btn i {
@@ -210,15 +274,47 @@
             transition: max-height 0.4s ease-out;
         }
         
-        /* Footer icons */
+        /* Skills section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .skill-tag {
+            background-color: rgba(139, 92, 246, 0.15);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .skill-tag:hover {
+            background-color: rgba(139, 92, 246, 0.3);
+            color: var(--light-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Footer */
         footer {
-            background: var(--gradient-bg);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 80px;
+            padding: 40px 0;
             text-align: center;
+            position: relative;
+        }
+        
+        .footer-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         
         .footer-links {
@@ -226,11 +322,12 @@
             justify-content: center;
             gap: 30px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
-            color: white;
-            font-size: 24px;
+            color: var(--light-color);
+            font-size: 1.5rem;
             text-decoration: none;
             transition: transform 0.3s ease;
             display: flex;
@@ -240,239 +337,228 @@
         
         .footer-links a:hover {
             transform: translateY(-5px);
+            color: var(--primary-color);
         }
         
         .footer-links a span {
-            font-size: 12px;
+            font-size: 0.8rem;
             margin-top: 5px;
-        }
-        
-        /* Skills section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .skill-tag {
-            background-color: rgba(108, 92, 231, 0.1);
-            color: var(--primary-color);
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
-        }
-        
-        /* Resume embed */
-        .resume-container {
-            width: 100%;
-            height: 600px;
-            margin: 20px 0;
+            opacity: 0.8;
         }
         
         /* Responsive design */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                margin: 60px 0;
+            }
+            
             .project-container {
                 grid-template-columns: 1fr;
-            }
-            
-            .footer-links {
-                flex-wrap: wrap;
-            }
-            
-            h1 {
-                font-size: 2rem;
             }
             
             .resume-container {
                 height: 400px;
             }
+            
+            .footer-links {
+                gap: 20px;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            transition-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            transition-delay: 0.6s;
         }
     </style>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Three.js for 3D objects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/DragControls.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Alexander Jiro Brown</h1>
-        <div id="about-me">
-            <h2>About Me</h2>
-            <p>I am a passionate developer with expertise in machine learning, AI, and data analysis. My work focuses on creating innovative solutions to complex problems using cutting-edge technologies.</p>
-        </div>
-    </header>
-    
-    <main>
-        <!-- Resume Section -->
-        <button class="collapsible">Resume <span>+</span></button>
-        <div class="content">
-            <div class="content-inner">
-                <h3>My Resume</h3>
-                <p>Below is my resume. You can view it directly or download it for reference.</p>
-                
-                <!-- Replace "your-resume.pdf" with the actual path to your resume PDF -->
-                <div class="resume-container">
-                    <object data="Alexander Brown Resume.pdf" type="application/pdf" width="100%" height="100%">
-                        <p>It appears your browser doesn't support embedded PDFs. 
-                           You can <a href="Alexander Brown Resume.pdf">download the PDF</a> instead.</p>
-                    </object>
-                </div>
+    <div class="container">
+        <!-- Hero Section with About Me -->
+        <section class="hero">
+            <!-- You can add your photo here -->
+            <div class="profile-img"></div>
+            
+            <h1 class="fade-in">Alexander Jiro Brown</h1>
+            <p class="fade-in delay-1">
+                I am a passionate developer with expertise in machine learning, AI, and data analysis. 
+                My work focuses on creating innovative solutions to complex problems using cutting-edge technologies.
+            </p>
+            
+            <div class="hero-buttons fade-in delay-2">
+                <a href="#projects" class="hero-btn">
+                    <i class="fas fa-code"></i> View Projects
+                </a>
+                <a href="#resume" class="hero-btn">
+                    <i class="fas fa-file-alt"></i> My Resume
+                </a>
+                <a href="#contact" class="hero-btn">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
             </div>
-        </div>
+        </section>
+        
+        <!-- Resume Section -->
+        <section id="resume" class="section fade-in">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-container">
+                <object data="your-resume.pdf" type="application/pdf" width="100%" height="100%">
+                    <p>It appears your browser doesn't support embedded PDFs. 
+                       You can <a href="your-resume.pdf" style="color: var(--primary-color);">download the PDF</a> instead.</p>
+                </object>
+            </div>
+        </section>
         
         <!-- Projects Section -->
-        <button class="collapsible">Projects <span>+</span></button>
-        <div class="content">
-            <div class="content-inner">
-                <div class="project-container">
-                    <!-- Project 1: CupBot RL -->
-                    <div class="project-card">
-                        <a href="cupbot.html">
-                            <div class="project-card-header">
-                                <h3>CupBot RL</h3>
-                            </div>
-                            <div class="project-card-body">
-                                <div class="canvas-container" id="canvas-cupbot"></div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Project 2: AI Body Camera Video Classifier -->
-                    <div class="project-card">
-                        <a href="ai-body-camera.html">
-                            <div class="project-card-header">
-                                <h3>AI Body Camera Classifier</h3>
-                            </div>
-                            <div class="project-card-body">
-                                <div class="canvas-container" id="canvas-camera"></div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Project 3: TES ML Research -->
-                    <div class="project-card">
-                        <a href="tes-ml.html">
-                            <div class="project-card-header">
-                                <h3>TES ML Research</h3>
-                            </div>
-                            <div class="project-card-body">
-                                <div class="canvas-container" id="canvas-tes"></div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Project 4: Minesweeper AI Solver -->
-                    <div class="project-card">
-                        <a href="minesweeper.html">
-                            <div class="project-card-header">
-                                <h3>Minesweeper AI Solver</h3>
-                            </div>
-                            <div class="project-card-body">
-                                <div class="canvas-container" id="canvas-minesweeper"></div>
-                            </div>
-                        </a>
-                    </div>
+        <section id="projects" class="section fade-in">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-container">
+                <!-- Project 1: CupBot RL -->
+                <div class="project-card fade-in">
+                    <a href="cupbot.html">
+                        <div class="project-card-header">
+                            <h3>CupBot RL</h3>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="canvas-container" id="canvas-cupbot"></div>
+                        </div>
+                    </a>
                 </div>
                 
-                <!-- Older Projects Section -->
-                <button id="older-projects-btn" class="older-projects-btn">
-                    See Older Projects <i class="fas fa-chevron-down"></i>
-                </button>
-                
-                <div id="older-projects" class="older-projects">
-                    <div class="project-container" style="margin-top: 20px;">
-                        <!-- Older Project: Basic Graph Analysis -->
-                        <div class="project-card">
-                            <a href="graph-analysis.html">
-                                <div class="project-card-header">
-                                    <h3>Basic Graph Analysis</h3>
-                                </div>
-                                <div class="project-card-body">
-                                    <div class="canvas-container" id="canvas-graph"></div>
-                                </div>
-                            </a>
+                <!-- Project 2: AI Body Camera Video Classifier -->
+                <div class="project-card fade-in delay-1">
+                    <a href="ai-body-camera.html">
+                        <div class="project-card-header">
+                            <h3>AI Body Camera Classifier</h3>
                         </div>
+                        <div class="project-card-body">
+                            <div class="canvas-container" id="canvas-camera"></div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Project 3: TES ML Research -->
+                <div class="project-card fade-in delay-2">
+                    <a href="tes-ml.html">
+                        <div class="project-card-header">
+                            <h3>TES ML Research</h3>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="canvas-container" id="canvas-tes"></div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Project 4: Minesweeper AI Solver -->
+                <div class="project-card fade-in delay-3">
+                    <a href="minesweeper.html">
+                        <div class="project-card-header">
+                            <h3>Minesweeper AI Solver</h3>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="canvas-container" id="canvas-minesweeper"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Older Projects Section -->
+            <button id="older-projects-btn" class="older-projects-btn fade-in">
+                See Older Projects <i class="fas fa-chevron-down"></i>
+            </button>
+            
+            <div id="older-projects" class="older-projects">
+                <div class="project-container" style="margin-top: 20px;">
+                    <!-- Older Project: Basic Graph Analysis -->
+                    <div class="project-card fade-in">
+                        <a href="graph-analysis.html">
+                            <div class="project-card-header">
+                                <h3>Basic Graph Analysis</h3>
+                            </div>
+                            <div class="project-card-body">
+                                <div class="canvas-container" id="canvas-graph"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         
         <!-- Skills Section -->
-        <button class="collapsible">Skills <span>+</span></button>
-        <div class="content">
-            <div class="content-inner">
-                <div class="skills-container">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Reinforcement Learning</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Graph Theory</span>
-                    <span class="skill-tag">Neural Networks</span>
-                    <span class="skill-tag">Computer Vision</span>
-                    <span class="skill-tag">Algorithm Design</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">HTML/CSS</span>
+        <section id="skills" class="section fade-in">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Reinforcement Learning</span>
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">Graph Theory</span>
+                <span class="skill-tag">Neural Networks</span>
+                <span class="skill-tag">Computer Vision</span>
+                <span class="skill-tag">Algorithm Design</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">HTML/CSS</span>
+            </div>
+        </section>
+        
+        <!-- Footer with contact links -->
+        <footer id="contact">
+            <div class="footer-content fade-in">
+                <h2>Get In Touch</h2>
+                <div class="footer-links">
+                    <a href="https://github.com/alexajb2" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alexander-jiro-brown/" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:alexjirocoll@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://tracker.gg/marvel-rivals/profile/ign/Firegon/overview?season=3" target="_blank" title="Marvel Rivals">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Marvel Rivals</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="footer-links">
-            <a href="https://github.com/alexajb2" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/alexander-jiro-brown/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-                <span>LinkedIn</span>
-            </a>
-            <a href="mailto:alexjirocoll@gmail.com" title="Email">
-                <i class="fas fa-envelope"></i>
-                <span>Email</span>
-            </a>
-            <a href="https://tracker.gg/marvel-rivals/profile/ign/Firegon/overview?season=3" target="_blank" title="Marvel Rivals">
-                <i class="fas fa-gamepad"></i>
-                <span>Marvel Rivals</span>
-            </a>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
     <script>
-        // JavaScript for collapsible sections
+        // JavaScript for older projects toggle
         document.addEventListener('DOMContentLoaded', function() {
-            var coll = document.getElementsByClassName("collapsible");
-            for (var i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    var plusMinus = this.querySelector("span");
-                    
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        content.style.padding = "0";
-                        plusMinus.textContent = "+";
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        plusMinus.textContent = "-";
-                    }
-                });
-            }
-            
-            // Older projects button
             const olderProjectsBtn = document.getElementById('older-projects-btn');
             const olderProjects = document.getElementById('older-projects');
             
@@ -483,13 +569,28 @@
                 } else {
                     olderProjects.style.maxHeight = olderProjects.scrollHeight + "px";
                 }
-                
-                // Update the parent content max height to accommodate
-                const projectsContent = this.closest('.content');
-                if (projectsContent.style.maxHeight) {
-                    projectsContent.style.maxHeight = projectsContent.scrollHeight + olderProjects.scrollHeight + "px";
-                }
             });
+            
+            // Scroll animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+                    
+                    if (isVisible) {
+                        element.classList.add('appear');
+                    }
+                });
+            }
+            
+            // Check elements on load
+            checkFade();
+            
+            // Check elements on scroll
+            window.addEventListener('scroll', checkFade);
             
             // Initialize 3D objects
             initThreeJS();
@@ -498,19 +599,19 @@
         // Three.js initialization for 3D objects
         function initThreeJS() {
             // CupBot 3D Object
-            createScene('canvas-cupbot', 0x6c5ce7, 'cup');
+            createScene('canvas-cupbot', 0xa78bfa, 'cup');
             
             // Camera 3D Object
-            createScene('canvas-camera', 0xfd79a8, 'camera');
+            createScene('canvas-camera', 0xf472b6, 'camera');
             
             // TES ML Research 3D Object
-            createScene('canvas-tes', 0x00cec9, 'sphere');
+            createScene('canvas-tes', 0x0ea5e9, 'sphere');
             
             // Minesweeper AI Solver 3D Object
             createScene('canvas-minesweeper', 0xff9f43, 'minesweeper');
             
             // Graph Analysis 3D Object
-            createScene('canvas-graph', 0x00b894, 'graph');
+            createScene('canvas-graph', 0x10b981, 'graph');
         }
         
         function createScene(canvasId, color, objectType) {
@@ -544,7 +645,12 @@
                     
                     // Cup body (cylinder)
                     const cupGeometry = new THREE.CylinderGeometry(0.5, 0.4, 1, 32);
-                    const cupMaterial = new THREE.MeshPhongMaterial({ color: color });
+                    const cupMaterial = new THREE.MeshPhongMaterial({ 
+                        color: color,
+                        shininess: 100,
+                        emissive: color,
+                        emissiveIntensity: 0.2
+                    });
                     const cup = new THREE.Mesh(cupGeometry, cupMaterial);
                     
                     // Cup handle
@@ -564,12 +670,20 @@
                     
                     // Camera body
                     const bodyGeometry = new THREE.BoxGeometry(1, 0.6, 0.4);
-                    const bodyMaterial = new THREE.MeshPhongMaterial({ color: color });
+                    const bodyMaterial = new THREE.MeshPhongMaterial({ 
+                        color: color,
+                        shininess: 100,
+                        emissive: color,
+                        emissiveIntensity: 0.2
+                    });
                     const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
                     
                     // Camera lens
                     const lensGeometry = new THREE.CylinderGeometry(0.2, 0.2, 0.3, 32);
-                    const lensMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+                    const lensMaterial = new THREE.MeshPhongMaterial({ 
+                        color: 0x333333,
+                        shininess: 150 
+                    });
                     const lens = new THREE.Mesh(lensGeometry, lensMaterial);
                     lens.rotation.x = Math.PI / 2;
                     lens.position.set(0, 0, 0.35);
@@ -584,7 +698,7 @@
                     const geometry = new THREE.SphereGeometry(0.7, 32, 32);
                     const material = new THREE.MeshPhongMaterial({ 
                         color: color,
-                        emissive: 0xff0000,
+                        emissive: color,
                         emissiveIntensity: 0.3,
                         shininess: 100
                     });
@@ -609,10 +723,16 @@
                             
                             // Cell
                             const cellGeometry = new THREE.BoxGeometry(cellSize, cellSize, cellSize * 0.2);
+                            
+                            // Use different material for the center cell (bomb)
+                            const isMine = (i === 1 && j === 1);
                             const cellMaterial = new THREE.MeshPhongMaterial({ 
-                                color: (i === 1 && j === 1) ? 0xff0000 : color,
+                                color: isMine ? 0xff0000 : color,
+                                emissive: isMine ? 0xff0000 : color,
+                                emissiveIntensity: isMine ? 0.5 : 0.2,
                                 shininess: 100
                             });
+                            
                             const cell = new THREE.Mesh(cellGeometry, cellMaterial);
                             cell.position.set(x, y, 0);
                             
@@ -634,7 +754,12 @@
                         [0, 0, 0.7]
                     ];
                     
-                    const nodeMaterial = new THREE.MeshPhongMaterial({ color: color });
+                    const nodeMaterial = new THREE.MeshPhongMaterial({ 
+                        color: color,
+                        emissive: color,
+                        emissiveIntensity: 0.3,
+                        shininess: 100
+                    });
                     
                     nodePositions.forEach(pos => {
                         const nodeGeometry = new THREE.SphereGeometry(0.15, 16, 16);
@@ -669,7 +794,15 @@
                 default:
                     // Default cube
                     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-                    const cubeMaterial = new THREE.MeshPhongMaterial({ color: color });
+                    const cubeMaterial = new THREE.MeshPhongMaterial({ 
+                        color: color,
+                        emissive: color,
+                
+                        color: color,
+                        emissive: color,
+                        emissiveIntensity: 0.2,
+                        shininess: 100
+                    });
                     object = new THREE.Mesh(cubeGeometry, cubeMaterial);
             }
             
@@ -686,7 +819,7 @@
             });
             
             dragControls.addEventListener('dragend', function (event) {
-                event.object.material.emissive && (event.object.material.emissive.set(0x000000));
+                event.object.material.emissive && (event.object.material.emissive.set(color));
             });
             
             // Animation loop

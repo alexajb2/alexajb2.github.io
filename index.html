@@ -399,7 +399,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Three.js for 3D objects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/DragControls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -431,9 +431,9 @@
         <section id="resume" class="section fade-in">
             <h2 class="section-title">Resume</h2>
             <div class="resume-container">
-                <object data="your-resume.pdf" type="application/pdf" width="100%" height="100%">
+                <object data="Alexander Brown Resume.pdf" type="application/pdf" width="100%" height="100%">
                     <p>It appears your browser doesn't support embedded PDFs. 
-                       You can <a href="your-resume.pdf" style="color: var(--primary-color);">download the PDF</a> instead.</p>
+                       You can <a href="Alexander Brown Resume.pdf" style="color: var(--primary-color);">download the PDF</a> instead.</p>
                 </object>
             </div>
         </section>
@@ -640,56 +640,146 @@
             
             switch(objectType) {
                 case 'cup':
-                    // Create a simple cup-like object
+                    // Create a more rendered teacup
                     const cupGroup = new THREE.Group();
                     
-                    // Cup body (cylinder)
-                    const cupGeometry = new THREE.CylinderGeometry(0.5, 0.4, 1, 32);
+                    // Cup body (cylinder with rounded bottom)
+                    const cupBodyGeometry = new THREE.CylinderGeometry(0.4, 0.3, 0.6, 32, 1, false);
                     const cupMaterial = new THREE.MeshPhongMaterial({ 
                         color: color,
                         shininess: 100,
                         emissive: color,
-                        emissiveIntensity: 0.2
+                        emissiveIntensity: 0.2,
+                        specular: 0xffffff
                     });
-                    const cup = new THREE.Mesh(cupGeometry, cupMaterial);
+                    const cupBody = new THREE.Mesh(cupBodyGeometry, cupMaterial);
+                    cupBody.position.y = 0.1;
+                    
+                    // Cup bottom (hemisphere)
+                    const cupBottomGeometry = new THREE.SphereGeometry(0.3, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+                    const cupBottom = new THREE.Mesh(cupBottomGeometry, cupMaterial);
+                    cupBottom.position.y = -0.2;
+                    cupBottom.rotation.x = Math.PI;
+                    
+                    // Cup rim
+                    const cupRimGeometry = new THREE.TorusGeometry(0.4, 0.05, 16, 32);
+                    const cupRim = new THREE.Mesh(cupRimGeometry, cupMaterial);
+                    cupRim.position.y = 0.4;
+                    cupRim.rotation.x = Math.PI / 2;
                     
                     // Cup handle
-                    const handleGeometry = new THREE.TorusGeometry(0.3, 0.05, 16, 32, Math.PI);
-                    const handle = new THREE.Mesh(handleGeometry, cupMaterial);
-                    handle.position.set(0.5, 0, 0);
-                    handle.rotation.y = Math.PI / 2;
+                    const handleCurve = new THREE.CubicBezierCurve3(
+                        new THREE.Vector3(0.4, 0.2, 0),
+                        new THREE.Vector3(0.7, 0.2, 0),
+                        new THREE.Vector3(0.7, -0.1, 0),
+                        new THREE.Vector3(0.4, -0.1, 0)
+                    );
                     
-                    cupGroup.add(cup);
+                    const handleGeometry = new THREE.TubeGeometry(handleCurve, 20, 0.05, 8, false);
+                    const handle = new THREE.Mesh(handleGeometry, cupMaterial);
+                    
+                    // Tea liquid
+                    const teaGeometry = new THREE.CylinderGeometry(0.38, 0.28, 0.1, 32);
+                    const teaMaterial = new THREE.MeshPhongMaterial({
+                        color: 0xc19a6b,
+                        shininess: 50,
+                        transparent: true,
+                        opacity: 0.9
+                    });
+                    const tea = new THREE.Mesh(teaGeometry, teaMaterial);
+                    tea.position.y = 0.35;
+                    
+                    // Saucer
+                    const saucerGeometry = new THREE.CylinderGeometry(0.7, 0.7, 0.05, 32);
+                    const saucer = new THREE.Mesh(saucerGeometry, cupMaterial);
+                    saucer.position.y = -0.3;
+                    
+                    cupGroup.add(cupBody);
+                    cupGroup.add(cupBottom);
+                    cupGroup.add(cupRim);
                     cupGroup.add(handle);
+                    cupGroup.add(tea);
+                    cupGroup.add(saucer);
+                    
+                    // Scale and position the cup
+                    cupGroup.scale.set(0.8, 0.8, 0.8);
+                    cupGroup.position.y = -0.1;
+                    
                     object = cupGroup;
                     break;
                     
                 case 'camera':
-                    // Create a camera-like object
+                    // Create a more detailed camera
                     const cameraGroup = new THREE.Group();
                     
                     // Camera body
-                    const bodyGeometry = new THREE.BoxGeometry(1, 0.6, 0.4);
+                    const bodyGeometry = new THREE.BoxGeometry(1, 0.7, 0.4);
                     const bodyMaterial = new THREE.MeshPhongMaterial({ 
                         color: color,
                         shininess: 100,
                         emissive: color,
-                        emissiveIntensity: 0.2
+                        emissiveIntensity: 0.2,
+                        specular: 0xffffff
                     });
                     const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
                     
+                    // Camera grip
+                    const gripGeometry = new THREE.BoxGeometry(0.25, 0.5, 0.4);
+                    const grip = new THREE.Mesh(gripGeometry, bodyMaterial);
+                    grip.position.set(0.6, -0.3, 0);
+                    
                     // Camera lens
-                    const lensGeometry = new THREE.CylinderGeometry(0.2, 0.2, 0.3, 32);
+                    const lensGeometry = new THREE.CylinderGeometry(0.2, 0.25, 0.4, 32);
                     const lensMaterial = new THREE.MeshPhongMaterial({ 
                         color: 0x333333,
-                        shininess: 150 
+                        shininess: 150,
+                        specular: 0x888888
                     });
                     const lens = new THREE.Mesh(lensGeometry, lensMaterial);
                     lens.rotation.x = Math.PI / 2;
-                    lens.position.set(0, 0, 0.35);
+                    lens.position.set(0, 0, 0.4);
+                    
+                    // Lens glass
+                    const lensGlassGeometry = new THREE.CircleGeometry(0.18, 32);
+                    const lensGlassMaterial = new THREE.MeshPhongMaterial({
+                        color: 0x222222,
+                        shininess: 200,
+                        specular: 0xffffff
+                    });
+                    const lensGlass = new THREE.Mesh(lensGlassGeometry, lensGlassMaterial);
+                    lensGlass.position.set(0, 0, 0.61);
+                    
+                    // Camera viewfinder
+                    const viewfinderGeometry = new THREE.BoxGeometry(0.3, 0.2, 0.2);
+                    const viewfinder = new THREE.Mesh(viewfinderGeometry, bodyMaterial);
+                    viewfinder.position.set(0, 0.35, 0.1);
+                    
+                    // Camera buttons
+                    const buttonGeometry = new THREE.CylinderGeometry(0.05, 0.05, 0.02, 16);
+                    const buttonMaterial = new THREE.MeshPhongMaterial({
+                        color: 0xdddddd,
+                        shininess: 100
+                    });
+                    
+                    const button1 = new THREE.Mesh(buttonGeometry, buttonMaterial);
+                    button1.rotation.x = Math.PI / 2;
+                    button1.position.set(0.3, 0.35, 0.21);
+                    
+                    const button2 = new THREE.Mesh(buttonGeometry, buttonMaterial);
+                    button2.rotation.x = Math.PI / 2;
+                    button2.position.set(0.4, 0.35, 0.21);
                     
                     cameraGroup.add(body);
+                    cameraGroup.add(grip);
                     cameraGroup.add(lens);
+                    cameraGroup.add(lensGlass);
+                    cameraGroup.add(viewfinder);
+                    cameraGroup.add(button1);
+                    cameraGroup.add(button2);
+                    
+                    // Scale and position the camera
+                    cameraGroup.scale.set(0.8, 0.8, 0.8);
+                    
                     object = cameraGroup;
                     break;
                     
@@ -706,31 +796,40 @@
                     break;
                     
                 case 'minesweeper':
-                    // Create a minesweeper grid
+                    // Create a minesweeper grid like a chocolate bar
                     const minesweeperGroup = new THREE.Group();
                     
                     // Create grid
                     const gridSize = 3;
                     const cellSize = 0.3;
-                    const spacing = 0.05;
-                    const totalSize = gridSize * cellSize + (gridSize - 1) * spacing;
+                    const totalSize = gridSize * cellSize;
                     const startPos = -totalSize / 2 + cellSize / 2;
+                    
+                    // Create base plate
+                    const plateGeometry = new THREE.BoxGeometry(totalSize, totalSize, 0.05);
+                    const plateMaterial = new THREE.MeshPhongMaterial({
+                        color: 0x555555,
+                        shininess: 30
+                    });
+                    const plate = new THREE.Mesh(plateGeometry, plateMaterial);
+                    plate.position.z = -0.05;
+                    minesweeperGroup.add(plate);
                     
                     for (let i = 0; i < gridSize; i++) {
                         for (let j = 0; j < gridSize; j++) {
-                            const x = startPos + i * (cellSize + spacing);
-                            const y = startPos + j * (cellSize + spacing);
+                            const x = startPos + i * cellSize;
+                            const y = startPos + j * cellSize;
                             
                             // Cell
-                            const cellGeometry = new THREE.BoxGeometry(cellSize, cellSize, cellSize * 0.2);
+                            const cellGeometry = new THREE.BoxGeometry(cellSize * 0.9, cellSize * 0.9, 0.05);
                             
                             // Use different material for the center cell (bomb)
                             const isMine = (i === 1 && j === 1);
                             const cellMaterial = new THREE.MeshPhongMaterial({ 
-                                color: isMine ? 0xff0000 : color,
-                                emissive: isMine ? 0xff0000 : color,
-                                emissiveIntensity: isMine ? 0.5 : 0.2,
-                                shininess: 100
+                                color: isMine ? 0xf472b6 : 0xc0c0c0, // Original Minesweeper colors
+                                emissive: isMine ? 0xf472b6 : 0xc0c0c0,
+                                emissiveIntensity: isMine ? 0.3 : 0.1,
+                                shininess: 50
                             });
                             
                             const cell = new THREE.Mesh(cellGeometry, cellMaterial);
@@ -797,9 +896,6 @@
                     const cubeMaterial = new THREE.MeshPhongMaterial({ 
                         color: color,
                         emissive: color,
-                
-                        color: color,
-                        emissive: color,
                         emissiveIntensity: 0.2,
                         shininess: 100
                     });
@@ -811,24 +907,55 @@
             // Position camera
             camera.position.z = 2;
             
-            // Setup drag controls
-            const dragControls = new THREE.DragControls([object], camera, renderer.domElement);
+            // Setup orbit controls for rotation
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enablePan = false;
+            controls.enableZoom = false;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
             
-            dragControls.addEventListener('dragstart', function (event) {
-                event.object.material.emissive && (event.object.material.emissive.set(0x333333));
+            // Variables for auto-rotation
+            let autoRotate = true;
+            let rotationSpeed = 0.01;
+            let lastInteractionTime = 0;
+            const autoRotateDelay = 2000; // 2 seconds after last interaction
+            
+            // Event listeners for interaction
+            renderer.domElement.addEventListener('mousedown', function() {
+                autoRotate = false;
+                lastInteractionTime = Date.now();
             });
             
-            dragControls.addEventListener('dragend', function (event) {
-                event.object.material.emissive && (event.object.material.emissive.set(color));
+            renderer.domElement.addEventListener('touchstart', function() {
+                autoRotate = false;
+                lastInteractionTime = Date.now();
+            });
+            
+            document.addEventListener('mouseup', function() {
+                lastInteractionTime = Date.now();
+            });
+            
+            document.addEventListener('touchend', function() {
+                lastInteractionTime = Date.now();
             });
             
             // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
                 
-                // Rotate object
-                object.rotation.x += 0.01;
-                object.rotation.y += 0.01;
+                // Check if we should resume auto-rotation
+                if (!autoRotate && Date.now() - lastInteractionTime > autoRotateDelay) {
+                    autoRotate = true;
+                }
+                
+                // Apply auto-rotation if not being interacted with
+                if (autoRotate) {
+                    object.rotation.y += rotationSpeed;
+                    object.rotation.x += rotationSpeed * 0.5;
+                }
+                
+                // Update controls
+                controls.update();
                 
                 renderer.render(scene, camera);
             }

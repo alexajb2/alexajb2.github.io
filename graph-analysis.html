@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Graph Analysis - Alexander Jiro Brown</title>
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fd79a8;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .project-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-section {
+            margin-bottom: 30px;
+        }
+        
+        .project-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+            color: #666;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: var(--gradient-bg);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 30px;
+            margin-left: 15px;
+            padding: 12px 25px;
+            background-color: var(--dark-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .github-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        code {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Basic Graph Analysis</h1>
+        <p>Implementation of graph algorithms including clustering coefficient</p>
+    </header>
+    
+    <main class="project-content">
+        <section class="project-section">
+            <h2>Project Overview</h2>
+            <p>The clustering coefficient is a measure used in network analysis to describe how tightly knit a node's neighborhood is. It essentially tells you the degree to which nodes in a graph tend to cluster together.</p>
+            
+            <div class="image-container">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Graph_from_Algorithm_Tests-xeEK3uvNLLmOApfbPvvxUMbZsSA8w7.png" alt="Graph from Algorithm Tests" class="project-image">
+                <p class="image-caption">Visualization of a graph with 10 nodes and 14 edges, showing clustering patterns</p>
+            </div>
+        </section>
+        
+        <section class="project-section">
+            <h2>Graph Algorithm Functions and Uses</h2>
+            <p>From interconnected highways to social media networks—graphs can represent many real-world systems. The issue is that observing such systems is no simple matter. In this project, you will find simple methods to calculate:</p>
+            <ul>
+                <li>Degree distribution</li>
+                <li>Number of edges</li>
+                <li>Number of nodes</li>
+                <li>A sophisticated heuristic for getting the diameter of the graph</li>
+                <li>The O(d^2 * n) Clustering Coefficient algorithm which counts the number of triangles</li>
+            </ul>
+        </section>
+        
+        <section class="project-section">
+            <h2>Clustering Coefficient Algorithm: Counting Triangles</h2>
+            
+            <h3>Naive Approach: O(n^3)</h3>
+            <p>Loop through every node three times and count each triangle that exists.</p>
+            
+            <h3>Optimized Approach: O("degeneracy"^2 * n)</h3>
+            <p>A graph is said to be 𝑘-degenerate if every subgraph of that graph has at least one vertex with degree ≤k.</p>
+            
+            <pre><code>for u in all nodes:     O(n)
+    for v in nodes adjacent to u:   O(# nodes adjacent to u), O(max degree) O(n)
+        for w in nodes adjacent to u: (or adjacent to v) O(# nodes adjacent to u)
+            if v adjacent to w: (or u adjacent to w)
+                add to count</code></pre>
+            
+            <p><strong>Notes:</strong></p>
+            <ul>
+                <li>To avoid triple counting, only check u, v, w where u &lt; v &lt; w.</li>
+                <li>Degeneracy pop nodes in sorted order biggest to smallest (bucket).</li>
+            </ul>
+        </section>
+        
+        <section class="project-section">
+            <h2>Graph Metrics</h2>
+            <p>The example graph shown above has the following metrics:</p>
+            <ul>
+                <li><strong>Nodes:</strong> 10</li>
+                <li><strong>Edges:</strong> 14</li>
+                <li><strong>Diameter:</strong> 5</li>
+                <li><strong>Clustering Coefficient:</strong> 0.40</li>
+                <li><strong>Degree Distribution:</strong> {2: 5, 5: 1, 4: 1, 3: 3}</li>
+            </ul>
+            <p>These metrics provide valuable insights into the structure and connectivity patterns of the graph, which can be used for various analytical purposes.</p>
+        </section>
+        
+        <section class="project-section">
+            <h2>Applications</h2>
+            <p>Whether you are tackling traffic congestion, managing complex relations, or fitting any problem that can be represented by a graph—these graph algorithms can be used for analytics and visualization. Some specific applications include:</p>
+            <ul>
+                <li>Social network analysis</li>
+                <li>Transportation network optimization</li>
+                <li>Biological network analysis (protein interactions, neural networks)</li>
+                <li>Recommendation systems</li>
+                <li>Web page ranking and link analysis</li>
+            </ul>
+        </section>
+        
+        <a href="index.html" class="back-button">Back to Portfolio</a>
+        <a href="https://github.com/alexajb2" class="github-link" target="_blank">View on GitHub</a>
+    </main>
+</body>
+</html>

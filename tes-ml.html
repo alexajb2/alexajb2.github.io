@@ -1,367 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TES-ML</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn6FIkqZjoQH6ZZrnFllVqZALofcuG1TrwO52eQZErPCWpG+nOQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon"
-        href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/350/graduation-cap_1f393.png"
-        type="image/x-icon">
-</head>
-
-<body>
-    
-    <div class="container">
-        <nav>
-            <div class="logo">
-                <a href="#">TES-ML</a>
-            </div>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Welcome to TES-ML</h1>
-                <p>Your gateway to the world of Machine Learning.</p>
-                <button>Learn More</button>
-            </div>
-            <div class="hero-image">
-                <img src="https://static.vecteezy.com/system/resources/previews/006/694/752/non_2x/artificial-intelligence-illustration-ai-concept-with-robot-hand-and-brain-vector.jpg"
-                    alt="Machine Learning">
-            </div>
-        </section>
-
-        <section class="about">
-            <h2>About Us</h2>
-            <p>We are a team of passionate Machine Learning enthusiasts dedicated to providing quality education and
-                resources.</p>
-        </section>
-
-        <section class="services">
-            <h2>Our Services</h2>
-            <div class="service-list">
-                <div class="service">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Courses</h3>
-                    <p>We offer a variety of courses to help you learn Machine Learning from scratch.</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-code"></i>
-                    <h3>Projects</h3>
-                    <p>Get hands-on experience with our exciting Machine Learning projects.</p>
-                </div>
-                <div class="service">
-                    <i class="fas fa-comments"></i>
-                    <h3>Community</h3>
-                    <p>Join our community to connect with other learners and experts.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Your Name">
-                <input type="email" placeholder="Your Email">
-                <textarea placeholder="Your Message"></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-
-        <footer>
-            <p>&copy; 2023 TES-ML. All rights reserved.</p>
-        </footer>
-    </div>
-
+    <title>TES ML Research - Alexander Jiro Brown</title>
     <style>
-        /* General Styles */
         :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --text-color: #343a40;
-            --background-color: #f8f9fa;
-            --gradient-overlay: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fd79a8;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+            --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
             line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/background-QKvx3fApMLcMRZX2iUzJwfc4MIQQOJ.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: -2;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-overlay);
-            z-index: -1;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
+        
+        header {
+            background: var(--gradient-bg);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
             overflow: hidden;
         }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 1rem 0;
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav .logo {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        nav .logo a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        nav ul {
-            float: right;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #fff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero::before {
+        
+        header::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
             left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .project-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-section {
+            margin-bottom: 30px;
+        }
+        
+        .project-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+            color: #666;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: var(--gradient-bg);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 30px;
+            margin-left: 15px;
+            padding: 12px 25px;
+            background-color: var(--dark-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .github-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        table {
             width: 100%;
-            height: 100%;
-            background: var(--gradient-overlay);
-            z-index: -1;
-        }
-
-        .hero-content {
-            flex: 1;
-            padding-right: 2rem;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-content button {
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .hero-image {
-            flex: 1;
-        }
-
-        .hero-image img {
-            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
-        /* About Section */
-        .about {
-            padding: 3rem 0;
-            text-align: center;
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
         }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
         }
-
-        /* Services Section */
-        .services {
-            padding: 3rem 0;
-            text-align: center;
-            background: #eee;
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
-
-        .services h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        
+        tr:hover {
+            background-color: #f1f1f1;
         }
-
-        .service-list {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .service {
-            flex: 1;
-            padding: 2rem;
-            margin: 1rem;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .service i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .service h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact form {
-            width: 70%;
-            margin: auto;
-        }
-
-        .contact input,
-        .contact textarea {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .contact button {
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background: #333;
-            color: #fff;
-        }
-
-        /* Media Queries for Responsiveness */
+        
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
+            h1 {
+                font-size: 2rem;
             }
-
-            nav ul {
-                float: none;
-                text-align: center;
-            }
-
-            nav ul li {
-                display: block;
-                margin: 0.5rem 0;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-content {
-                padding-right: 0;
-            }
-
-            .hero-image {
-                margin-top: 2rem;
-            }
-
-            .service-list {
-                flex-direction: column;
-            }
-
-            .service {
-                margin: 1rem 0;
-            }
-
-            .contact form {
-                width: 95%;
+            
+            th, td {
+                padding: 10px;
             }
         }
     </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>TES ML Research</h1>
+        <p>Machine Learning Research for Thermal Energy Storage</p>
+    </header>
+    
+    <main class="project-content">
+        <section class="project-section">
+            <h2>Project Overview</h2>
+            <p>Simulations for thermal energy storage charging and discharging are widely used to predict costs, time requirements, and energy outcomes for various systems. However, these simulations are computationally intensive and slow. By leveraging time-sequential machine learning models, we aim to develop faster and more efficient alternatives while maintaining accuracy.</p>
+        </section>
+        
+        <section class="project-section">
+            <h2>Models Used</h2>
+            <ul>
+                <li><strong>Long Short-Term Memory (LSTM):</strong> A type of recurrent neural network (RNN) designed to handle long-term dependencies by mitigating the vanishing gradient problem, making it effective for sequential data modeling.</li>
+                <li><strong>Gated Recurrent Unit (GRU):</strong> A simplified variant of LSTM that reduces computational complexity while maintaining performance, particularly well-suited for time-series forecasting.</li>
+                <li><strong>Recurrent Neural Network (RNN):</strong> A fundamental neural network architecture for sequential data, though prone to vanishing gradients, limiting its ability to capture long-range dependencies.</li>
+                <li><strong>Radial Basis Function Recurrent Neural Network (RBF-RNN):</strong> A hybrid approach integrating radial basis functions into RNNs to enhance pattern recognition and approximation capabilities for time-dependent data.</li>
+            </ul>
+        </section>
+        
+        <section class="project-section">
+            <h2>Results</h2>
+            <p>We tested five cases with thermal input patterns that differ significantly from the training data to assess whether the models capture the underlying physical behaviors of thermal energy dynamics rather than merely interpolating from training data.</p>
+            
+            <div>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Figure_1-uTn1pcdiEF5ZaSgHDoczM6mhzdoeuu.png" alt="Case 1 Results" class="project-image">
+                <p class="image-caption">Case 1: Comparison of actual vs. predicted temperature values over time</p>
+            </div>
+            
+            <div>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Figure_4-z7fFFRNaSjxnyKU8mtAX7xbxzkTkZe.png" alt="Case 4 Results" class="project-image">
+                <p class="image-caption">Case 4: Comparison of actual vs. predicted temperature values over time</p>
+            </div>
+        </section>
+        
+        <section class="project-section">
+            <h2>Performance Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>GRU</th>
+                        <th>LSTM</th>
+                        <th>RBF-RNN</th>
+                        <th>RNN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Training Time (s)</strong></td>
+                        <td>60</td>
+                        <td>58</td>
+                        <td>122</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average Testing Time (s)</strong></td>
+                        <td>0.084</td>
+                        <td>0.067</td>
+                        <td>0.13</td>
+                        <td>0.07</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section class="project-section">
+            <h2>Conclusion</h2>
+            <p>This research is ongoing, with discharge patterns yet to be trained or tested. Expanding the dataset with a broader range of features will be essential for developing models that generalize well across different simulation scenarios. As the feature space grows, dimensionality reduction techniques will become crucial for maintaining efficiency.</p>
+            <p>Preliminary results indicate that GRU-based predictions are the most accurate, and all models can process thermal input patterns in under a second with adequate hardware—dramatically faster than the current 10-minute simulation runtime.</p>
+        </section>
+        
+        <a href="index.html" class="back-button">Back to Portfolio</a>
+        <a href="https://github.com/alexajb2" class="github-link" target="_blank">View on GitHub</a>
+    </main>
 </body>
-
 </html>
-
